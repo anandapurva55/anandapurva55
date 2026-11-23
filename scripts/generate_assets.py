@@ -32,12 +32,12 @@ if __name__ == "__main__":
     n_logo, n_mono = gen_toolbox.toolbox()
     gen_nav.generate(sum(len(g[3]) for g in gen_toolbox.GROUPS))
     gen_hero.cta()
-    gen_hero.heading_adaptive("award", "Global award-winning work", AM, LAV, top=16)
-    gen_hero.heading_adaptive("academic", "Academic Excellence Award", AM, EM)
-    gen_hero.heading_adaptive("projects", "Built on top of my day job", SKY, EM)
-    gen_hero.heading_adaptive("expertise", "From algorithms to production AI", EM, AM)
-    gen_hero.heading_adaptive("tech", "Tools & technologies I use", LAV, AM)
-    gen_hero.heading_adaptive("contact", "Get in touch", ROSE, AM)
+    gen_hero.heading_adaptive("award", "Global award-winning work", AM, LAV, top=25)
+    gen_hero.heading_adaptive("academic", "Academic Excellence Award", AM, EM, top=9)
+    gen_hero.heading_adaptive("projects", "Built on top of my day job", SKY, EM, top=8)
+    gen_hero.heading_adaptive("expertise", "From algorithms to production AI", EM, AM, top=19)
+    gen_hero.heading_adaptive("tech", "Tools & technologies I use", LAV, AM, top=19)
+    gen_hero.heading_adaptive("contact", "Get in touch", ROSE, AM, top=19)
     for stale in ("h-featured.svg", "h-built.svg", "h-stack.svg", "h-toolbox.svg", "h-about.svg", "btn-email.svg", "btn-whatsapp.svg", "nav-stack.svg", "nav-toolbox.svg", "bar-award.svg", "bar-demo.svg", "sec-award.svg", "sec-projects.svg"):
         (OUT / stale).unlink(missing_ok=True)
     # separate rounded cards with real gaps (transparent margins); the page shows through between them

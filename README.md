@@ -5,7 +5,7 @@
 
 <a name="award"></a>
 
-<a name="h-award"><img src="assets/h-award.c321afbf.svg" alt="Global award-winning work" width="100%" align="top"/></a>
+<a name="h-award"><img src="assets/h-award.0839ea61.svg" alt="Global award-winning work" width="100%" align="top"/></a>
 
 > In 2025, at Trianz, one of my former employers and a **digital consulting company**, I built a **real-time agentic voice assistant** that automates **insurance claims adjustment** through natural conversation, powered by Amazon Nova Sonic and Nova Pro. It secured **global runner-up recognition** in the 2025 Amazon Nova Partner Demo Competition hosted by AWS, outperforming **leading global consulting firms** such as **Deloitte and Accenture**. I also presented and explained the solution as part of the competition demo.
 
@@ -19,13 +19,13 @@
 
 🎥 **My presentation:** [Watch the solution demo (3:01)](https://www.youtube.com/watch?v=xyfuDkDKELg&t=181s) *(Featured in the official AWS announcement above).*
 
-<a name="h-academic"><img src="assets/h-academic.9f7e6957.svg" alt="Academic Excellence Award" width="100%" align="top"/></a>
+<a name="h-academic"><img src="assets/h-academic.dbbb96f1.svg" alt="Academic Excellence Award" width="100%" align="top"/></a>
 
 > I graduated with a Bachelor of Technology (B.Tech) degree in **Information Technology**, scoring **92.66%** (**First Class with Distinction**) and ranking **2nd out of 200 students** during all four years of the programme.
 
 <a name="projects"></a>
 
-<a name="h-projects"><img src="assets/h-projects.1ca18b30.svg" alt="Built on top of my day job" width="100%" align="top"/></a>
+<a name="h-projects"><img src="assets/h-projects.3d0c3f13.svg" alt="Built on top of my day job" width="100%" align="top"/></a>
 Beyond my professional work, I build end-to-end, open-source systems in my own time. They push the same ideas I use at work further, and each one is a complete working project, listed here with everything it uses:
 
 <div align="center">
@@ -38,21 +38,21 @@ Beyond my professional work, I build end-to-end, open-source systems in my own t
 <a name="expertise"></a>
 
 <div align="center">
-<a name="h-expertise"><img src="assets/h-expertise.29ee3bf0.svg" alt="From algorithms to production AI" width="100%" align="top"/></a>
+<a name="h-expertise"><img src="assets/h-expertise.57fbf334.svg" alt="From algorithms to production AI" width="100%" align="top"/></a>
 <a name="expertise-card"><img src="assets/stack.659b48c9.svg" alt="Strong foundations, modern AI, production discipline. One: foundations in calculus, linear algebra, probability and statistics, so I can choose the right model. Two: classical machine learning, deep learning and NLP, then I moved to generative and agentic AI. Three: prompting, RAG and semantic search, fine-tuning with SFT, LoRA and QLoRA, multi-agent systems, MCP servers and LLM-as-a-Judge evaluation, and I ship it with production engineering. Four: security and guardrails, observability, evaluation at scale, reliability, latency and cost, and cloud infrastructure as code on AWS and GCP." width="100%" align="top"/></a>
 </div>
 
 <a name="tech"></a>
 
 <div align="center">
-<a name="h-tech"><img src="assets/h-tech.4edc7c54.svg" alt="Tools & technologies I use" width="100%" align="top"/></a>
+<a name="h-tech"><img src="assets/h-tech.6aac954a.svg" alt="Tools & technologies I use" width="100%" align="top"/></a>
 <a name="tech-card"><img src="assets/toolbox.6df819ec.svg" alt="Tools and technologies I use, a logo wall: Generative and agentic AI; ML and data science; data and analytics; Amazon Web Services (AWS) including SageMaker, Lambda, ECS, S3, Glue and Athena; Google Cloud Platform (GCP) including BigQuery, Cloud Run, Cloud Build and Vertex AI; MLOps, security and observability; and languages, frameworks and dev tools." width="100%" align="top"/></a>
 </div>
 
 <a name="contact"></a>
 
 <div align="center">
-<a name="h-contact"><img src="assets/h-contact.b227f5d1.svg" alt="Get in touch" width="100%" align="top"/></a>
+<a name="h-contact"><img src="assets/h-contact.cc9e3283.svg" alt="Get in touch" width="100%" align="top"/></a>
 <a name="contact-card"><img src="assets/contact-card.bd8069a6.svg" alt="Let's build something reliable. Open to conversations about Applied AI, ML, GenAI and AI products." width="100%" align="top"/></a>
 <a href="mailto:anandapurva228@gmail.com"><img src="assets/contact-email.bcdb4d76.svg" alt="Email me at anandapurva228@gmail.com" width="50%" align="top"/></a><a href="https://wa.me/917903283465"><img src="assets/contact-whatsapp.e70777f4.svg" alt="Message me on WhatsApp" width="49.99%" align="top"/></a>
 </div>
