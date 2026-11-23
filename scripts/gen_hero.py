@@ -232,14 +232,21 @@ def nav_pill(name, label, col):
 </svg>""")
 
 
-def heading_adaptive(slug, label, col_a, col_b):
-    """Transparent heading in two versions; README serves one per GitHub theme through <picture>."""
+# One calm, confident colour family for every heading (cool blue -> soft indigo). Research (practitioner colour-psychology guides and clothing/job-applicant
+# studies) most consistently links blue and blue-violet with trust and competence, and warns that saturated green and red read worse. Both ends were tuned
+# for lightness so each keeps >= ~3.8:1 contrast on white, GitHub dark dimmed (#22272e) and GitHub dark (#0d1117): the best any single colour can do on both.
+HEAD_A, HEAD_B = "#3383de", "#6e78e1"
+
+
+def heading_adaptive(slug, label, col_a=None, col_b=None):
+    """ONE bare-text heading image that reads on a white page and on every GitHub dark theme (no theme switching needed)."""
     css = ("@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}"
            ".l{transform-box:fill-box;transform-origin:0 50%;animation:grow 1.2s ease-out both}" + RM)
-    for mode, ink in (("dark", INK), ("light", "#1f2328")):
-        write(f"h-{slug}-{mode}.svg", f"""<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="66" viewBox="0 0 1000 66">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{col_a}"/><stop offset="1" stop-color="{col_b}"/></linearGradient></defs>
+    tw = round(len(label) * 16.6)
+    write(f"h-{slug}.svg", f"""<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="66" viewBox="0 0 1000 66">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{HEAD_A}"/><stop offset="1" stop-color="{HEAD_B}"/></linearGradient>
+  <linearGradient id="t" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="{tw}" y2="0"><stop offset="0" stop-color="{HEAD_A}"/><stop offset="1" stop-color="{HEAD_B}"/></linearGradient></defs>
   <style>{css}</style>
-  <text x="0" y="38" style="font:800 30px {FONT};fill:{ink};letter-spacing:-.3px">{escape(label)}</text>
+  <text x="0" y="38" style="font:800 30px {FONT};fill:url(#t);letter-spacing:-.3px">{escape(label)}</text>
   <rect class="l" x="0" y="52" width="1000" height="3" rx="1.5" fill="url(#g)"/>
 </svg>""")
