@@ -101,7 +101,7 @@ def hero():
 def heading(name, label, col_a, col_b):
     css = ("@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}"
            ".l{transform-box:fill-box;transform-origin:0 50%;animation:grow 1.2s ease-out both}" + RM)
-    write(name, f"""<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="66" viewBox="0 0 1000 66">
+    write(name, f"""<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="58" viewBox="0 0 1000 58">
   <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{col_a}"/><stop offset="1" stop-color="{col_b}"/></linearGradient></defs>
   <style>{css}</style>
   <rect width="1000" height="66" rx="14" fill="{BG}"/>
@@ -238,15 +238,16 @@ def nav_pill(name, label, col):
 HEAD_A, HEAD_B = "#3383de", "#6e78e1"
 
 
-def heading_adaptive(slug, label, col_a=None, col_b=None):
+def heading_adaptive(slug, label, col_a=None, col_b=None, top=0):
     """ONE bare-text heading image that reads on a white page and on every GitHub dark theme (no theme switching needed)."""
     css = ("@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}"
            ".l{transform-box:fill-box;transform-origin:0 50%;animation:grow 1.2s ease-out both}" + RM)
     tw = round(len(label) * 16.6)
-    write(f"h-{slug}.svg", f"""<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="66" viewBox="0 0 1000 66">
+    H = 58 + top      # `top` adds air above the heading (used where it follows a card with no text margin of its own)
+    write(f"h-{slug}.svg", f"""<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="{H}" viewBox="0 0 1000 {H}">
   <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{HEAD_A}"/><stop offset="1" stop-color="{HEAD_B}"/></linearGradient>
   <linearGradient id="t" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="{tw}" y2="0"><stop offset="0" stop-color="{HEAD_A}"/><stop offset="1" stop-color="{HEAD_B}"/></linearGradient></defs>
   <style>{css}</style>
-  <text x="0" y="38" style="font:800 30px {FONT};fill:url(#t);letter-spacing:-.3px">{escape(label)}</text>
-  <rect class="l" x="0" y="52" width="1000" height="3" rx="1.5" fill="url(#g)"/>
+  <g transform="translate(0,{top})"><text x="0" y="38" style="font:800 30px {FONT};fill:url(#t);letter-spacing:-.3px">{escape(label)}</text>
+  <rect class="l" x="0" y="52" width="1000" height="3" rx="1.5" fill="url(#g)"/></g>
 </svg>""")
