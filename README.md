@@ -5,10 +5,7 @@
 
 <a name="award"></a>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/h-award-dark.0736299b.svg">
-  <img src="assets/h-award-light.7a794991.svg" alt="Global award-winning work" width="100%">
-</picture>
+<a name="h-award"><img src="assets/h-award.aef972f9.svg" alt="Global award-winning work" width="100%"/></a>
 
 > In 2025, at Trianz, one of my former employers and a **digital consulting company**, I built a **real-time agentic voice assistant** that automates **insurance claims adjustment** through natural conversation, powered by Amazon Nova Sonic and Nova Pro. It secured **global runner-up recognition** in the 2025 Amazon Nova Partner Demo Competition hosted by AWS, outperforming **leading global consulting firms** such as **Deloitte and Accenture**. I also presented and explained the solution as part of the competition demo.
 
@@ -22,19 +19,13 @@
 
 🎥 **My presentation:** [Watch the solution demo (3:01)](https://www.youtube.com/watch?v=xyfuDkDKELg&t=181s) *(Featured in the official AWS announcement above).*
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/h-academic-dark.7698f08f.svg">
-  <img src="assets/h-academic-light.3434f19a.svg" alt="Academic Excellence Award" width="100%">
-</picture>
+<a name="h-academic"><img src="assets/h-academic.6d590870.svg" alt="Academic Excellence Award" width="100%"/></a>
 
 > I graduated with a Bachelor of Technology (B.Tech) degree in **Information Technology**, scoring **92.66%** (**First Class with Distinction**) and ranking **2nd out of 200 students** during all four years of the programme.
 
 <a name="projects"></a>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/h-projects-dark.c3754fb8.svg">
-  <img src="assets/h-projects-light.cb1132f1.svg" alt="Built on top of my day job" width="100%">
-</picture>
+<a name="h-projects"><img src="assets/h-projects.41652884.svg" alt="Built on top of my day job" width="100%"/></a>
 
 Beyond my professional work, I build end-to-end, open-source systems in my own time. They push the same ideas I use at work further, and each one is a complete working project, listed here with everything it uses:
 
@@ -47,10 +38,7 @@ Beyond my professional work, I build end-to-end, open-source systems in my own t
 
 <a name="expertise"></a>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/h-expertise-dark.087f3d84.svg">
-  <img src="assets/h-expertise-light.72a2ccc2.svg" alt="From algorithms to production AI" width="100%">
-</picture>
+<a name="h-expertise"><img src="assets/h-expertise.3e071022.svg" alt="From algorithms to production AI" width="100%"/></a>
 
 <div align="center">
 <a name="expertise-card"><img src="assets/stack.659b48c9.svg" alt="Strong foundations, modern AI, production discipline. One: foundations in calculus, linear algebra, probability and statistics, so I can choose the right model. Two: classical machine learning, deep learning and NLP, then I moved to generative and agentic AI. Three: prompting, RAG and semantic search, fine-tuning with SFT, LoRA and QLoRA, multi-agent systems, MCP servers and LLM-as-a-Judge evaluation, and I ship it with production engineering. Four: security and guardrails, observability, evaluation at scale, reliability, latency and cost, and cloud infrastructure as code on AWS and GCP." width="100%" align="top"/></a>
@@ -58,10 +46,7 @@ Beyond my professional work, I build end-to-end, open-source systems in my own t
 
 <a name="tech"></a>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/h-tech-dark.54662b0d.svg">
-  <img src="assets/h-tech-light.9727a7f3.svg" alt="Tools & technologies I use" width="100%">
-</picture>
+<a name="h-tech"><img src="assets/h-tech.af4e61d9.svg" alt="Tools & technologies I use" width="100%"/></a>
 
 <div align="center">
 <a name="tech-card"><img src="assets/toolbox.6df819ec.svg" alt="Tools and technologies I use, a logo wall: Generative and agentic AI; ML and data science; data and analytics; Amazon Web Services (AWS) including SageMaker, Lambda, ECS, S3, Glue and Athena; Google Cloud Platform (GCP) including BigQuery, Cloud Run, Cloud Build and Vertex AI; MLOps, security and observability; and languages, frameworks and dev tools." width="100%" align="top"/></a>
@@ -69,10 +54,7 @@ Beyond my professional work, I build end-to-end, open-source systems in my own t
 
 <a name="contact"></a>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/h-contact-dark.52ee96c1.svg">
-  <img src="assets/h-contact-light.e81ee174.svg" alt="Get in touch" width="100%">
-</picture>
+<a name="h-contact"><img src="assets/h-contact.005e1dca.svg" alt="Get in touch" width="100%"/></a>
 
 <div align="center">
 <a name="contact-card"><img src="assets/contact-card.bd8069a6.svg" alt="Let's build something reliable. Open to conversations about Applied AI, ML, GenAI and AI products." width="100%" align="top"/></a>
