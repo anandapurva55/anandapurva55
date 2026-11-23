@@ -60,3 +60,7 @@ Beyond my professional work, I build end-to-end, open-source systems in my own t
 <a name="contact-card"><img src="assets/contact-card.bd8069a6.svg" alt="Let's build something reliable. Open to conversations about Applied AI, ML, GenAI and AI products." width="100%" align="top"/></a>
 <a href="mailto:anandapurva228@gmail.com"><img src="assets/contact-email.bcdb4d76.svg" alt="Email me at anandapurva228@gmail.com" width="50%" align="top"/></a><a href="https://wa.me/917903283465"><img src="assets/contact-whatsapp.e70777f4.svg" alt="Message me on WhatsApp" width="49.99%" align="top"/></a>
 </div>
+
+```text
+anandapurva228@gmail.com
+```
