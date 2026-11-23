@@ -32,7 +32,7 @@ if __name__ == "__main__":
     n_logo, n_mono = gen_toolbox.toolbox()
     gen_nav.generate(sum(len(g[3]) for g in gen_toolbox.GROUPS))
     gen_hero.cta()
-    gen_hero.heading_adaptive("award", "Global award-winning work", AM, LAV)
+    gen_hero.heading_adaptive("award", "Global award-winning work", AM, LAV, top=16)
     gen_hero.heading_adaptive("academic", "Academic Excellence Award", AM, EM)
     gen_hero.heading_adaptive("projects", "Built on top of my day job", SKY, EM)
     gen_hero.heading_adaptive("expertise", "From algorithms to production AI", EM, AM)
