@@ -39,7 +39,7 @@ Beyond my professional work, I build end-to-end, open-source systems in my own t
 
 <div align="center">
 <a name="h-expertise"><img src="assets/h-expertise.57fbf334.svg" alt="From algorithms to production AI" width="100%" align="top"/></a>
-<a name="expertise-card"><img src="assets/stack.659b48c9.svg" alt="Strong foundations, modern AI, production discipline. One: foundations in calculus, linear algebra, probability and statistics, so I can choose the right model. Two: classical machine learning, deep learning and NLP, then I moved to generative and agentic AI. Three: prompting, RAG and semantic search, fine-tuning with SFT, LoRA and QLoRA, multi-agent systems, MCP servers and LLM-as-a-Judge evaluation, and I ship it with production engineering. Four: security and guardrails, observability, evaluation at scale, reliability, latency and cost, and cloud infrastructure as code on AWS and GCP." width="100%" align="top"/></a>
+<a name="expertise-card"><img src="assets/stack.755f839b.svg" alt="Strong foundations, modern AI, production discipline. One: foundations in calculus, linear algebra, probability and statistics, so I can choose the right model. Two: classical machine learning, deep learning and NLP, then I moved to generative and agentic AI. Three: prompt engineering, RAG and semantic search, fine-tuning with SFT, LoRA and QLoRA, multi-agent systems with tools and memory, MCP servers and LLM-as-a-Judge evaluation, and I ship it with production engineering. Four: security and guardrails, observability, evaluation at scale, reliability, latency and cost, and cloud infrastructure as code on AWS and GCP." width="100%" align="top"/></a>
 </div>
 
 <a name="tech"></a>

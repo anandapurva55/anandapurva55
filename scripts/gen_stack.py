@@ -141,8 +141,8 @@ def stack():
     h2 = 186
     ys[2] = y
     out += tier_frame(x0, y, tw, h2, SKY, "02", "CLASSICAL ML  ·  DEEP LEARNING  ·  NLP", "I pick the right model for the problem.")
-    steps = [("Classical ML", "regression · gradient boosting · causal inference · survival analysis"),
-             ("Deep learning", "PyTorch · TensorFlow · Keras · dense and recurrent networks"),
+    steps = [("Classical ML", "regression · classification · gradient boosting · causal inference · survival analysis"),
+             ("Deep learning", "PyTorch · TensorFlow · Keras"),
              ("NLP", "transformers · DistilBERT · text classification · NLTK")]
     nw = 266
     g2 = (tw - 48 - 3 * nw) / 2
@@ -163,10 +163,10 @@ def stack():
     out += tier_frame(x0, y, tw, h3, EM, "03", "GENERATIVE & AGENTIC AI", "I build LLM systems, not demos.")
     hx, hy = x0 + tw / 2, y + 184
     nodes = [  # title, sub, x, y, w, h, side
-        ("Prompting and few-shot", "intent classification and entity extraction", hx - 160, y + 58, 320, 58, "top"),
+        ("Prompt Engineering", "intent classification and entity extraction", hx - 160, y + 58, 320, 58, "top"),
         ("RAG and semantic search", "grounded answers from your own data", x0 + 24, y + 100, 290, 74, "left"),
         ("Fine-tuning", "SFT with LoRA and QLoRA", x0 + 24, y + 214, 290, 74, "left"),
-        ("Multi-agent systems", "orchestrated agents with a human in the loop", x0 + tw - 24 - 290, y + 100, 290, 74, "right"),
+        ("Multi-agent systems", "orchestrated agents with tools, memory and humans in the loop", x0 + tw - 24 - 290, y + 100, 290, 74, "right"),
         ("MCP servers", "custom tools for AI clients", x0 + tw - 24 - 290, y + 214, 290, 74, "right"),
         ("LLM-as-a-Judge", "scalable evaluation and regression tests", hx - 150, y + 258, 300, 58, "bottom"),
     ]
