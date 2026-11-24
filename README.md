@@ -7,7 +7,7 @@
 
 <a name="h-award"><img src="assets/h-award.0839ea61.svg" alt="Global award-winning work" width="100%" align="top"/></a>
 
-> In 2025, at Trianz, one of my former employers and a **digital consulting company**, I built a **real-time agentic voice assistant** that automates **insurance claims adjustment** through natural conversation, powered by Amazon Nova Sonic and Nova Pro. It secured **global runner-up recognition** in the 2025 Amazon Nova Partner Demo Competition hosted by AWS, outperforming **leading global consulting firms** such as **Deloitte and Accenture**. I also presented and explained the solution as part of the competition demo.
+> In 2025, at Trianz, one of my former employers and a **digital consulting company**, I built a **real-time agentic voice assistant** that automates **insurance claims adjustment** through natural conversation, powered by Amazon Nova Sonic and Nova Pro, multimodal LLMs from Amazon Bedrock. It secured **global runner-up recognition** in the 2025 Amazon Nova Partner Demo Competition hosted by AWS, outperforming **leading global consulting firms** such as **Deloitte and Accenture**. I also presented and explained the solution as part of the competition demo.
 
 <div align="center">
 
