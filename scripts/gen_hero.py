@@ -26,7 +26,7 @@ def hero():
     RINGS, BEAT = 16, 3.6
     rings = [""] * RINGS
     step = 25
-    cols = ("#4fc3bb", "#efa467", "#6f9ee8", "#b09ee5", "#e99cca")          # left to right, matching the five result columns
+    cols = ("#4fc3bb", "#efa467", "#6f9ee8", "#b09ee5", "#b7db63")          # left to right, matching the five result columns
     for row in range(11):
         y = 18 + row * step + 2
         for c in range(39):
@@ -44,7 +44,7 @@ def hero():
                ("TRIANZ, INDIA", "trianz", "$1.6M+", "revenue generated", "AI consulting clients", "#efa467"),
                ("ST ENGINEERING, SINGAPORE", "stengg", "$150K", "projected savings a year", "client: Singapore Police Force", "#6f9ee8"),
                ("360DIALOG, GERMANY", "360dialog", "$235K", "fraud losses prevented", "per year", "#b09ee5"),
-               ("CLANITY, INDIA", "clanity", "500+", "active users", "founded the company", "#e99cca")]
+               ("CLANITY, INDIA", "clanity", "500+", "active users", "founded the company", "#b7db63")]
     band, bw = "", 944 / 5
     for i, (label, slug, m, c1, c2, col) in enumerate(results):
         x = 28 + i * bw
