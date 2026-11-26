@@ -3,97 +3,87 @@ import base64
 from html import escape
 
 import textwrap
+from random import Random
 
 from assetlib import (AM, BG, BLUR, BODY, EM, FLOW_CSS, FONT, INK, LAV, MONO, MUTED, OUT, PANEL, PANEL2, RM, ROSE, SKY,
                       cur, logo, logo_box, mono_tile, pd, round_path, write)
 
 
 def hero():
-    W, H = 1000, 490
+    """Calm statement: name, what I do and the proof, centred. One even field of soft light fills the upper half, a ripple passing
+    through it again and again in the same five colours as the result columns; the words themselves stay still, and below, the five results light up one after another."""
+    W, H, T = 1000, 490, 6.0
     nus = base64.b64encode((OUT / "nus-logo.png").read_bytes()).decode()
+    DES, BLD, SHP, VAL = "#b09ee5", "#4fc3bb", "#6f9ee8", "#efa467"          # background glows and the value phrase
 
-    # "current flowing": inputs -> AI chip -> business outcomes
-    traces = [
-        ([(560, 66), (650, 66), (650, 130), (728, 130)], EM, 0.0, "DATA", (560, 52), "start"),
-        ([(560, 150), (728, 150)], AM, 0.5, "MODELS", (560, 136), "start"),
-        ([(560, 234), (650, 234), (650, 170), (728, 170)], SKY, 1.0, "TOOLS", (560, 220), "start"),
-        ([(812, 130), (884, 130), (884, 66), (968, 66)], LAV, 1.7, "REVENUE", (968, 52), "end"),
-        ([(812, 150), (968, 150)], EM, 2.2, "SAVINGS", (968, 136), "end"),
-        ([(812, 170), (884, 170), (884, 234), (968, 234)], ROSE, 2.7, "USERS", (968, 220), "end"),
-    ]
-    circuit = term = lab = ""
-    for pts, col, dl, name, (lx, ly), anc in traces:
-        circuit += cur(pd(pts), col, dl, 3.2)
-        for (px, py) in (pts[0], pts[-1]):
-            term += f'<circle cx="{px}" cy="{py}" r="6" fill="{BG}" stroke="{col}" stroke-width="2.2"/><circle cx="{px}" cy="{py}" r="2.4" fill="{col}"/>'
-        lab += f'<text x="{lx}" y="{ly}" text-anchor="{anc}" style="font:700 11px {MONO};fill:{MUTED};letter-spacing:1.8px">{name}</text>'
+    def at(t, dur=T):
+        return f'style="animation-delay:{t - dur:.2f}s"'
 
+    def text(x, y, s, size, weight, fill, extra="", fam=FONT):
+        return f'<text x="{x}" y="{y}" text-anchor="middle" style="font:{weight} {size}px {fam};fill:{fill};{extra}">{escape(s)}</text>'
 
-    tiles = [
-        ("FORD, INDIA", "ford", "$350K+", "annual business value", ["conversational AI"], EM),
-        ("TRIANZ, INDIA", "trianz", "$1.6M+", "revenue generated", ["AI consulting clients"], AM),
-        ("ST ENGINEERING, SINGAPORE", "stengg", "$150K", "projected savings a year", ["client: Singapore", "Police Force"], SKY),
-        ("360DIALOG, GERMANY", "360dialog", "$235K", "fraud losses prevented", ["per year"], LAV),
-        ("CLANITY, INDIA", "clanity", "500+", "active users", ["founded the company"], ROSE),
-    ]
-    tw, tg, ty, th = 176, 14, 288, 188
-    tl = ""
-    for i, (label, slug, m, c1, c2s, col) in enumerate(tiles):
-        x = 32 + i * (tw + tg)
-        centred = slug in ("ford", "360dialog", "clanity")   # compact marks sit in the middle; wide wordmarks stay left
-        tlab = "".join(f'<text x="{x + 18}" y="{ty + 26 + k * 14}" style="font:700 10.5px {MONO};fill:{col};letter-spacing:1.2px">{escape(l)}</text>'
-                      for k, l in enumerate(textwrap.wrap(label, 18)))
-        mark = logo_box(slug, x + 18, ty + 46, 140 if centred else 128, 32, bg=PANEL2, align="xMidYMid" if centred else "xMinYMid") or mono_tile(label[:2], col, x + (tw - 32) / 2, ty + 46, 32)
-        sub = "".join(f'<text x="{x + 18}" y="{ty + 157 + k * 15}" style="font:400 12px {FONT};fill:{MUTED}">{escape(l)}</text>' for k, l in enumerate(c2s))
-        tl += f"""<g class="rise" style="animation-delay:{.5 + i * .1}s"><rect x="{x}" y="{ty}" width="{tw}" height="{th}" rx="16" fill="{PANEL2}" stroke="{col}" stroke-opacity=".42"/>
-    {tlab}
-    {mark}
-    <text x="{x + 18}" y="{ty + 118}" style="font:800 32px {FONT};fill:{INK}">{escape(m)}</text>
-    <text x="{x + 18}" y="{ty + 141}" style="font:600 13px {FONT};fill:{BODY}">{escape(c1)}</text>
-    {sub}</g>"""
+    ink = lambda c, w=2.4: f'fill="none" stroke="{c}" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round"'
+    RINGS, BEAT = 16, 3.6
+    rings = [""] * RINGS
+    step = 25
+    cols = ("#4fc3bb", "#efa467", "#6f9ee8", "#b09ee5", "#e99cca")          # left to right, matching the five result columns
+    for row in range(11):
+        y = 18 + row * step + 2
+        for c in range(39):
+            x = 25 + c * step
+            dist = (((x - 500) / 1.7) ** 2 + (y - 150) ** 2) ** .5           # elliptical, so the ripple matches the card's shape
+            # the same dots everywhere; only a smooth dimming behind the words so they stay crisp
+            quiet = min(1.0, max(0.0, ((((x - 500) / 330) ** 2 + ((y - 168) / 112) ** 2) ** .5 - .75) / .5))
+            op = .26 + .74 * quiet
+            k = int(dist / 330 * RINGS * 1.0) % RINGS
+            rings[k] += f'<circle cx="{x}" cy="{y}" r="2.7" fill="{cols[min(4, int(x / 200))]}" fill-opacity="{op:.2f}"/>'
+    scene = "".join(f'<g class="ripple" style="animation-delay:{k * BEAT / RINGS * 1.0 - BEAT:.2f}s">{dots}</g>' for k, dots in enumerate(rings) if dots)
 
-    css = ("@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1}}"
-           "@keyframes breath{0%,100%{opacity:.4}50%{opacity:1}}"
-           "@keyframes hl{0%{opacity:0}5%,18%{opacity:1}26%,100%{opacity:0}}"
-           ".rise{animation:rise .8s ease-out both}.breath{animation:breath 3.2s ease-in-out infinite}.hl{opacity:0;animation:hl 4.5s ease-in-out infinite}" + FLOW_CSS + RM)
+    # ---- the proof: five results
+    results = [("FORD, INDIA", "ford", "$350K+", "annual business value", "conversational AI", "#4fc3bb"),
+               ("TRIANZ, INDIA", "trianz", "$1.6M+", "revenue generated", "AI consulting clients", "#efa467"),
+               ("ST ENGINEERING, SINGAPORE", "stengg", "$150K", "projected savings a year", "client: Singapore Police Force", "#6f9ee8"),
+               ("360DIALOG, GERMANY", "360dialog", "$235K", "fraud losses prevented", "per year", "#b09ee5"),
+               ("CLANITY, INDIA", "clanity", "500+", "active users", "founded the company", "#e99cca")]
+    band, bw = "", 944 / 5
+    for i, (label, slug, m, c1, c2, col) in enumerate(results):
+        x = 28 + i * bw
+        cx = x + bw / 2
+        t = i * .45
+        if i:
+            band += f'<line x1="{x:.1f}" y1="316" x2="{x:.1f}" y2="452" stroke="#fff" stroke-opacity=".1"/>'
+        mark = logo_box(slug, cx - 60, 333, 120, 29, bg=PANEL, align="xMidYMid") or mono_tile(label[:2], col, cx - 15, 333, 29)
+        band += (f'<rect class="proof" {at(t, 3.0)} x="{x + 5:.1f}" y="305" width="{bw - 10:.1f}" height="158" rx="16" fill="{col}" fill-opacity=".13" stroke="{col}" stroke-width="1.8"/>'
+                 f'{mark}' + text(cx, 323, label, 10, 700, col, f"letter-spacing:{0.4 if len(label) > 20 else 1.4}px", MONO)
+                 + text(cx, 399, m, 36, 800, INK, "letter-spacing:-1px") + text(cx, 424, c1, 12.5, 700, BODY) + text(cx, 443, c2, 11, 500, MUTED))
+
+    css = ("@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1}}.rise{animation:rise .8s ease-out both}"
+           "@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(70px,22px)}}.drift{animation:drift 14s ease-in-out infinite}.drift2{animation:drift 18s ease-in-out infinite reverse}"
+           "@keyframes ripple{0%,100%{opacity:.2}22%{opacity:1}50%{opacity:.2}}.ripple{opacity:.2;animation:ripple 3.6s ease-in-out infinite}"
+           "@keyframes proof{0%{opacity:0}9%,24%{opacity:1}44%,100%{opacity:0}}.proof{opacity:0;animation:proof 3s ease-in-out infinite}")
+    css += RM
+
+    glows = "".join(f'<radialGradient id="{i}"><stop offset="0" stop-color="{c}" stop-opacity="{o}"/><stop offset="1" stop-color="{c}" stop-opacity="0"/></radialGradient>'
+                    for i, c, o in (("a1", BLD, .20), ("a2", DES, .20), ("a3", SHP, .15)))
     svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
-  <defs>
-    <linearGradient id="tg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{EM}"/><stop offset="1" stop-color="{AM}"/></linearGradient>
-    <linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{NAV_MID}"/><stop offset="1" stop-color="{AM}"/></linearGradient>
-    <radialGradient id="o1" cx=".1" cy=".95" r=".6"><stop offset="0" stop-color="{EM}" stop-opacity=".14"/><stop offset="1" stop-color="{EM}" stop-opacity="0"/></radialGradient>
-    <radialGradient id="o2" cx=".85" cy=".3" r=".5"><stop offset="0" stop-color="{AM}" stop-opacity=".12"/><stop offset="1" stop-color="{AM}" stop-opacity="0"/></radialGradient>
-    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#fff" fill-opacity=".07"/></pattern>
-    {BLUR}
-    <clipPath id="c"><path d="{round_path(W, H, 0, 0, 22, 22)}"/></clipPath>
-  </defs>
+  <defs>{glows}<linearGradient id="money" gradientUnits="userSpaceOnUse" x1="424" y1="0" x2="706" y2="0"><stop offset="0.000" stop-color="#d4f86a"/><stop offset="0.200" stop-color="#45e38a"/><stop offset="0.400" stop-color="#d4f86a"/><stop offset="0.600" stop-color="#45e38a"/><stop offset="0.800" stop-color="#d4f86a"/><stop offset="1.000" stop-color="#45e38a"/></linearGradient><linearGradient id="aurora" gradientUnits="userSpaceOnUse" x1="640" y1="0" x2="750" y2="0"><stop offset="0.000" stop-color="#4fe0cf"/><stop offset="0.333" stop-color="#7fb2ff"/><stop offset="0.667" stop-color="#bda6ff"/><stop offset="1.000" stop-color="#ff9fd0"/></linearGradient><clipPath id="c"><path d="{round_path(W, H, 0, 0, 22, 22)}"/></clipPath></defs>
   <style>{css}</style>
   <g clip-path="url(#c)">
-    <rect width="{W}" height="{H}" fill="{BG}"/><rect width="{W}" height="{H}" fill="url(#dots)"/>
-    <rect width="{W}" height="{H}" fill="url(#o1)"/><rect width="{W}" height="{H}" fill="url(#o2)"/>
+    <rect width="{W}" height="{H}" fill="{BG}"/>
+    <ellipse class="drift" cx="240" cy="40" rx="440" ry="250" fill="url(#a1)"/><ellipse class="drift2" cx="760" cy="60" rx="440" ry="250" fill="url(#a2)"/><ellipse class="drift" cx="500" cy="520" rx="560" ry="200" fill="url(#a3)"/>
   </g>
-
-  <g class="rise">
-    <text x="46" y="112" style="font:800 68px {FONT};fill:{INK};letter-spacing:-1.5px">Apurva Anand</text>
-  </g>
+  <g clip-path="url(#c)">{scene}</g>
+  <g class="rise">{text(500, 116, "Apurva Anand", 80, 800, INK, "letter-spacing:-2.5px")}</g>
   <g class="rise" style="animation-delay:.2s">
-    <text x="48" y="150" style="font:500 22px {FONT};fill:{BODY}">I design, build and ship GenAI and ML</text>
-    <text x="48" y="178" style="font:500 22px {FONT};fill:{BODY}">solutions at enterprise scale that generate</text>
-    <text x="48" y="206" style="font:500 22px {FONT};fill:{BODY}"><tspan style="fill:{AM};font-weight:700">measurable business value</tspan>.</text>
-    <rect x="48" y="228" width="92" height="40" rx="9" fill="#ffffff"/>
-    <image href="data:image/png;base64,{nus}" x="53" y="232" width="82" height="32" preserveAspectRatio="xMidYMid meet"/>
-    <text x="154" y="245" style="font:700 15px {FONT};fill:{INK}">M.S., Business Analytics</text>
-    <text x="154" y="264" style="font:500 13px {FONT};fill:{MUTED}">National University of Singapore  ·  6 yrs in AI/ML</text>
+    <text x="500" y="167" text-anchor="middle" style="font:500 22px {FONT};fill:{BODY}">I design, build and ship GenAI and ML solutions at enterprise scale</text>
+    <text x="500" y="198" text-anchor="middle" style="font:500 22px {FONT};fill:{BODY}">that generate <tspan style="fill:url(#money);font-weight:800">measurable business value</tspan>.</text>
+    <rect x="262" y="222" width="106" height="48" rx="10" fill="#ffffff"/>
+    <image href="data:image/png;base64,{nus}" x="268" y="226" width="94" height="40" preserveAspectRatio="xMidYMid meet"/>
+    <text x="384" y="242" style="font:800 18px {FONT};fill:{INK}">M.S., Business Analytics</text>
+    <text x="384" y="266" style="font:600 16px {FONT};fill:{INK}">National University of Singapore<tspan style="fill:{MUTED}">  ·  </tspan><tspan style="fill:url(#aurora);font-weight:800">6 yrs in AI/ML</tspan></text>
   </g>
-
-  <g class="rise" style="animation-delay:.25s">
-    {circuit}
-    {term}
-    {lab}
-    <rect class="breath" x="722" y="104" width="96" height="92" rx="16" fill="none" stroke="{EM}" stroke-width="2"/>
-    <rect x="728" y="110" width="84" height="80" rx="12" fill="{PANEL2}" stroke="{EM}" stroke-opacity=".55"/>
-    <text x="770" y="162" text-anchor="middle" style="font:800 30px {MONO};fill:{INK}">AI</text>
-  </g>
-  {tl}
+  <rect x="28" y="300" width="944" height="168" rx="22" fill="{PANEL}" fill-opacity=".72" stroke="#fff" stroke-opacity=".1"/>
+  {band}
 </svg>"""
     write("hero.svg", svg)
 

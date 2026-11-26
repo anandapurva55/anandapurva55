@@ -55,17 +55,17 @@ BUBBLE = {"Awards": "See awards", "Projects": "Explore", "Expertise": "Dive in",
 
 
 def tab(name, title, col, kind, idx=0):
-    """One segment of the menu bar (docked, seamless). Instead of a flowing current, a small speech bubble pops up over each tab in
-    turn ("See awards", "Explore", ...) with a little tap bounce: it tells the visitor the tab is clickable."""
+    """One segment of the menu bar (docked, seamless). Instead of a flowing current, a small speech bubble pops up over every tab at the
+    same moment ("See awards", "Explore", ...) with a little tap bounce: it tells the visitor the tabs are clickable."""
     W, H = 200, 84
-    T, SLOT = 12.0, 2.4
+    T, SLOT = 4.0, 0.0                     # every bubble pops at the same moment, again and again
     label = BUBBLE.get(title, "Click")
     bw = 14 + 6.4 * len(label)
     bx = 124 - bw / 2 + 24
     div = "" if idx == 4 else f'<line x1="{W - .5}" y1="14" x2="{W - .5}" y2="{H - 14}" stroke="#fff" stroke-opacity=".10"/>'
     write(name, f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
   <defs>{BLUR}<linearGradient id="fd" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="{col}" stop-opacity=".10"/><stop offset="1" stop-color="{col}" stop-opacity="0"/></linearGradient></defs>
-  <style>{CSS}@keyframes bub{{0%{{opacity:0;transform:translateY(8px) scale(.3)}}2.5%{{opacity:1;transform:translateY(-2px) scale(1.18)}}4.5%{{transform:translateY(0) scale(1)}}7%{{transform:translateY(-3px) scale(1.04)}}9%{{transform:translateY(0) scale(1)}}17%{{opacity:1;transform:translateY(0) scale(1)}}20%,100%{{opacity:0;transform:translateY(-4px) scale(.85)}}}}.bub{{transform-box:fill-box;transform-origin:50% 100%;opacity:0;animation:bub {T}s ease-out infinite;animation-delay:{idx * SLOT:.1f}s}}</style>
+  <style>{CSS}@keyframes bub{{0%{{opacity:0;transform:translateY(8px) scale(.3)}}7%{{opacity:1;transform:translateY(-2px) scale(1.18)}}12%{{transform:translateY(0) scale(1)}}18%{{transform:translateY(-3px) scale(1.04)}}24%{{transform:translateY(0) scale(1)}}78%{{opacity:1;transform:translateY(0) scale(1)}}88%,100%{{opacity:0;transform:translateY(-4px) scale(.85)}}}}.bub{{transform-box:fill-box;transform-origin:50% 100%;opacity:0;animation:bub {T}s ease-out infinite;animation-delay:{idx * SLOT:.1f}s}}</style>
   <rect width="{W}" height="{H}" fill="{BG}"/><rect width="{W}" height="{H}" fill="url(#fd)"/>
   <rect width="{W}" height="3" fill="{col}" fill-opacity=".85"/>
   <circle cx="38" cy="{H / 2 - 2}" r="34" fill="{col}" fill-opacity=".10"/>
