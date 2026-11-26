@@ -59,16 +59,19 @@ GROUPS = [
 
 
 def toolbox():
+    from gen_signatures import CSS as SIG_CSS, scene
     W, cols, cw, rh = 1000, 10, 100, 100
     y, out, n_logo, n_mono = 0, "", 0, 0
+    adefs = ""
+    y = 16
     for gi, (title, col, badge, items, also) in enumerate(GROUPS):
-        bx = 0
+        bx, y0, before = 0, y, out
+        out = ""
         if badge:                                  # brand badge lives in the title, so the grid does not repeat it
             out += logo(badge, 0, y - 6, 34, bg=BG) or ""
             bx = 46
         out += f'<text x="{bx}" y="{y + 20}" style="font:800 14px {MONO};fill:{col};letter-spacing:2.6px">{escape(title)}</text>'
         tx = bx + 40 + len(title) * 10.4
-        out += cur(pd([(tx, y + 15), (W, y + 15)]), col, gi * .8, 5.5, 2.6, 6)
         y += 44
         for k, item in enumerate(items):
             name, slug = item[0], item[1]
@@ -86,17 +89,31 @@ def toolbox():
                 n_logo += 1
             label = lines_for(name)
             lab = "".join(f'<text x="{cx}" y="{top + 66 + i * 14}" text-anchor="middle" style="font:600 {11.5 if len(l) <= 12 else 10.5}px {MONO};fill:{BODY}">{escape(l)}</text>' for i, l in enumerate(label))
-            out += f'<g class="tl" style="animation-delay:{gi * .5 + r * .22 + c * .07:.2f}s">{mark}{lab}</g>'
+            out += mark + lab
         y += ((len(items) - 1) // cols + 1) * rh
-        y += 14
+        # the skill set's own box: an aurora in its colour that is always there, drifting slowly inside the box
+        bx0, by0, bw, bh = -14, y0 - 16, W + 28, y - y0 + 14
+        adefs += (f'<radialGradient id="a{gi}"><stop offset="0" stop-color="{col}" stop-opacity=".30"/><stop offset=".55" stop-color="{col}" stop-opacity=".13"/><stop offset="1" stop-color="{col}" stop-opacity="0"/></radialGradient>'
+                  f'<clipPath id="c{gi}"><rect x="{bx0}" y="{by0}" width="{bw}" height="{bh}" rx="20"/></clipPath>')
+        ry = max(bh * .75, 90)
+        box = (f'<rect x="{bx0}" y="{by0}" width="{bw}" height="{bh}" rx="20" fill="{col}" fill-opacity=".045"/>'
+               f'<g clip-path="url(#c{gi})">'
+               f'<ellipse class="d1" style="animation-delay:{-gi * 2.3:.1f}s" cx="{W * .24:.0f}" cy="{by0 + bh * .15:.0f}" rx="340" ry="{ry:.0f}" fill="url(#a{gi})"/>'
+               f'<ellipse class="d2" style="animation-delay:{-gi * 3.1:.1f}s" cx="{W * .76:.0f}" cy="{by0 + bh * .9:.0f}" rx="360" ry="{ry:.0f}" fill="url(#a{gi})"/>'
+               f'<g transform="translate({bx0},{by0})" opacity=".55">{scene(title, col, bw, bh)}</g></g>'
+               f'<rect class="rim" style="animation-delay:{-gi * .9:.1f}s" x="{bx0}" y="{by0}" width="{bw}" height="{bh}" rx="20" fill="none" stroke="{col}" stroke-width="1.5"/>')
+        out = before + box + out
+        y += 30
     H = y
-    css = ("@keyframes wave{0%,16%,100%{opacity:.8;transform:scale(1)}7%{opacity:1;transform:scale(1.09)}}"
-           ".tl{transform-box:fill-box;transform-origin:center;animation:wave 14s ease-in-out infinite}" + FLOW_CSS + RM)
+    H -= 14
+    css = ("@keyframes d1{0%,100%{transform:translate(-90px,0)}50%{transform:translate(260px,14px)}}.d1{animation:d1 14s ease-in-out infinite}"
+           "@keyframes d2{0%,100%{transform:translate(90px,0)}50%{transform:translate(-280px,-14px)}}.d2{animation:d2 17s ease-in-out infinite}"
+           "@keyframes rim{0%,100%{stroke-opacity:.3}50%{stroke-opacity:.6}}.rim{stroke-opacity:.42;animation:rim 8s ease-in-out infinite}" + SIG_CSS + RM)
     pad, head_h = 28, 0
     from gen_sections import GROW
     gdef, ghead = "", ""
     write("toolbox.svg", f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W + 2 * pad}" height="{H + 2 * pad + head_h}" viewBox="0 0 {W + 2 * pad} {H + 2 * pad + head_h}">
-  <defs>{BLUR}{gdef}</defs>
+  <defs>{adefs}{gdef}</defs>
   <style>{css}{GROW}</style>
   <rect width="{W + 2 * pad}" height="{H + 2 * pad + head_h}" fill="{BG}" stroke="#fff" stroke-opacity=".08"/>
   {ghead}
