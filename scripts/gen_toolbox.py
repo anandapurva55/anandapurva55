@@ -3,29 +3,46 @@ from assetlib import (aspect, logo_box, AM, BG, BLUR, BODY, EM, FLOW_CSS, FONT, 
                       mono_tile, pd, wrap, write)
 
 # (label, logo slug or None, monogram for tools that have no public logo)
+# Soft, soothing colours, one per skill set. No red, no black; chosen so every pair stays visibly different (CIEDE2000 >= 14)
+# and each reads clearly on the dark card.
+PALETTE = {
+    "GENERATIVE": "#b09ee5",   # lavender: imagination
+    "ML & DATA":  "#b0d46a",   # pistachio: models that grow
+    "DATA & ANA": "#9fe0f5",   # sky: flowing data
+    "MLOPS":      "#4fc3bb",   # sea teal: a steady pipeline
+    "AMAZON":     "#efa467",   # apricot: AWS
+    "GOOGLE":     "#6f9ee8",   # cornflower: Google Cloud
+    "SECURITY":   "#f6dc80",   # butter: a watchful light
+    "BACKEND":    "#cc6fe2",   # plum: services behind the scenes
+    "FRONTEND":   "#e99cca",   # orchid pink: design
+    "AI CODING":  "#e3c3b4",   # almond: a companion
+    "LANGUAGES":  "#66cc8a",   # leaf green: code
+}
+
+
 GROUPS = [
     # (title, colour, badge logo for the title, items, "also" line for tools without a public logo)
-    ("GENERATIVE & AGENTIC AI", EM, None,
+    ("GENERATIVE & AGENTIC AI", PALETTE["GENERATIVE"], None,
      [("MCP", "mcp"), ("RAG", "i-rag"), ("Semantic Search", "i-semantic"), ("Embeddings", "i-embed"), ("Fine-tuning (SFT)", "i-finetune"),
       ("LoRA / QLoRA", "i-qlora"), ("Prompt Engineering", "i-prompt"), ("LLM-as-a-Judge", "i-judge"), ("Strands Agents", "strands"),
       ("AutoGen", "autogen"), ("LangChain", "langchain-i"), ("Hugging Face", "huggingface"), ("Claude", "claude"), ("Gemini", "googlegemini"),
       ("GPT", "openai"), ("Llama", "meta"), ("Qwen", "qwen"), ("Amazon Nova", "nova"), ("Ollama", "ollama")],
      None),
-    ("ML & DATA SCIENCE", AM, None,
+    ("ML & DATA SCIENCE", PALETTE["ML & DATA"], None,
      [("PyTorch", "pytorch"), ("TensorFlow", "tensorflow"), ("Keras", "keras"), ("scikit-learn", "scikitlearn"), ("XGBoost", "xgboost"),
       ("LightGBM", "lightgbm"), ("Optuna", "optuna"), ("SHAP", "shap"), ("statsmodels", "statsmodels"), ("linearmodels", "linearmodels"),
       ("NumPy", "numpy"), ("Pandas", "pandas"), ("SciPy", "scipy"), ("Matplotlib", "matplotlib"), ("seaborn", "seaborn"),
       ("Jupyter", "jupyter"), ("Gurobi", "gurobi"), ("Ray", "ray"), ("NLTK", "nltk"), ("lifelines", "lifelines")],
      None),
-    ("DATA & ANALYTICS", SKY, None,
+    ("DATA & ANALYTICS", PALETTE["DATA & ANA"], None,
      [("Snowflake", "snowflake"), ("PostgreSQL", "postgresql"), ("SQLite", "sqlite"), ("Apache Spark", "apachespark"),
       ("Apache Arrow", "apachearrow"), ("Tableau", "tableau")],
      None),
-    ("MLOPS", ROSE, None,
+    ("MLOPS", PALETTE["MLOPS"], None,
      [("MLflow", "mlflow"), ("Evidently", "evidently-light"), ("Terraform", "terraform"), ("Docker", "docker"), ("Kubernetes", "kubernetes"),
       ("GitHub Actions", "githubactions"), ("Tekton", "tekton")],
      None),
-    ("AMAZON WEB SERVICES (AWS)", AM, "aws",
+    ("AMAZON WEB SERVICES (AWS)", PALETTE["AMAZON"], "aws",
      [("Bedrock", "bedrock"), ("SageMaker", "sagemaker"), ("Lambda", "lambda"), ("EC2", "ec2"), ("ECS", "ecs"), ("Fargate", "fargate"),
       ("App Runner", "apprunner"), ("S3", "s3"), ("DynamoDB", "dynamodb"), ("RDS", "rds"), ("Glue", "glue"), ("Athena", "athena"),
       ("OpenSearch", "opensearch"), ("CloudFront", "cloudfront"), ("CloudWatch", "cloudwatch"), ("Step Functions", "stepfunctions"),
@@ -33,25 +50,25 @@ GROUPS = [
       ("CloudFormation", "cloudformation"), ("CDK", "cdk"), ("CodeBuild", "codebuild"), ("ECR", "ecr"),
       ("Secrets Manager", "secretsmanager"), ("Load Balancer", "elb"), ("SNS", "sns"), ("VPC", "vpc"), ("Systems Manager", "ssm")],
      None),
-    ("GOOGLE CLOUD PLATFORM (GCP)", LAV, "googlecloud",
+    ("GOOGLE CLOUD PLATFORM (GCP)", PALETTE["GOOGLE"], "googlecloud",
      [("BigQuery", "bigquery"), ("Cloud Run", "cloudrun"), ("Cloud Build", "cloudbuild"), ("Cloud Storage", "googlecloudstorage"),
       ("Cloud Logging", "cloudlogging"), ("Cloud Scheduler", "cloudscheduler"), ("Vertex AI", "vertexai"), ("Apigee", "apigee"),
       ("Model Armor", "modelarmor")],
      None),
-    ("SECURITY & OBSERVABILITY", SKY, None,
+    ("SECURITY & OBSERVABILITY", PALETTE["SECURITY"], None,
      [("Dynatrace", "dynatrace"), ("Prometheus", "prometheus"), ("SonarQube", "sonar"), ("FOSSA", "fossa-i"), ("Cycode", "cycode"),
       ("Dependabot", "dependabot"), ("Entra ID", "entra")],
      None),
-    ("BACKEND & APIS", LAV, None,
+    ("BACKEND & APIS", PALETTE["BACKEND"], None,
      [("FastAPI", "fastapi"), ("Pydantic", "pydantic"), ("WhatsApp API", "whatsapp")],
      None),
-    ("FRONTEND & DATA APPS", SKY, None,
+    ("FRONTEND & DATA APPS", PALETTE["FRONTEND"], None,
      [("React", "react"), ("TypeScript", "typescript"), ("Vite", "vite"), ("Streamlit", "streamlit")],
      None),
-    ("AI CODING ASSISTANTS", ROSE, None,
+    ("AI CODING ASSISTANTS", PALETTE["AI CODING"], None,
      [("Claude Code", "claudecode"), ("Codex", "codex"), ("GitHub Copilot", "githubcopilot"), ("Google Antigravity", "antigravity")],
      None),
-    ("LANGUAGES & DEV TOOLS", EM, None,
+    ("LANGUAGES & DEV TOOLS", PALETTE["LANGUAGES"], None,
      [("Python", "python"), ("SQL", "sql"), ("GitHub", "github"), ("VS Code", "vscode"), ("Cursor", "cursor"), ("Postman", "postman"), ("Hoppscotch", "hoppscotch"),
       ("Jira", "jira"), ("pytest", "pytest")],
      None),
@@ -100,7 +117,7 @@ def toolbox():
                f'<g clip-path="url(#c{gi})">'
                f'<ellipse class="d1" style="animation-delay:{-gi * 2.3:.1f}s" cx="{W * .24:.0f}" cy="{by0 + bh * .15:.0f}" rx="340" ry="{ry:.0f}" fill="url(#a{gi})"/>'
                f'<ellipse class="d2" style="animation-delay:{-gi * 3.1:.1f}s" cx="{W * .76:.0f}" cy="{by0 + bh * .9:.0f}" rx="360" ry="{ry:.0f}" fill="url(#a{gi})"/>'
-               f'<g transform="translate({bx0},{by0})" opacity=".55">{scene(title, col, bw, bh)}</g></g>'
+               f'<g transform="translate({bx0},{by0})" opacity="{.85 if title.startswith(("AI CODING", "BACKEND", "LANGUAGES")) else .8 if title.startswith("GENERATIVE") else .55}">{scene(title, col, bw, bh)}</g></g>'
                f'<rect class="rim" style="animation-delay:{-gi * .9:.1f}s" x="{bx0}" y="{by0}" width="{bw}" height="{bh}" rx="20" fill="none" stroke="{col}" stroke-width="1.5"/>')
         out = before + box + out
         y += 30
