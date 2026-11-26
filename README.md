@@ -46,7 +46,7 @@ Beyond my professional work, I build end-to-end, open-source systems in my own t
 
 <div align="center">
 <a name="h-tech"><img src="assets/h-tech.6aac954a.svg" alt="Tools & technologies I use" width="100%" align="top"/></a>
-<a name="tech-card"><img src="assets/toolbox.ab4e0195.svg" alt="Tools and technologies I use, a logo wall: Generative and agentic AI; ML and data science; data and analytics; Amazon Web Services (AWS) including SageMaker, Lambda, ECS, S3, Glue and Athena; Google Cloud Platform (GCP) including BigQuery, Cloud Run, Cloud Build and Vertex AI; MLOps, security and observability; and languages, frameworks and dev tools." width="100%" align="top"/></a>
+<a name="tech-card"><img src="assets/toolbox.a82718cb.svg" alt="Tools and technologies I use, a logo wall: Generative and agentic AI; ML and data science; data and analytics; Amazon Web Services (AWS) including SageMaker, Lambda, ECS, S3, Glue and Athena; Google Cloud Platform (GCP) including BigQuery, Cloud Run, Cloud Build and Vertex AI; MLOps, security and observability; and languages, frameworks and dev tools." width="100%" align="top"/></a>
 </div>
 
 <a name="contact"></a>

@@ -12,8 +12,8 @@ CSS = ("@keyframes sg-tw{0%,100%{opacity:.3}50%{opacity:1}}.sg-tw{animation:sg-t
        "@keyframes sg-ui{0%,100%{opacity:.18;transform:translateY(9px) scale(.9)}35%,65%{opacity:1;transform:translateY(0) scale(1)}}.sg-ui{transform-box:fill-box;transform-origin:center;animation:sg-ui 3s ease-in-out infinite}"
        "@keyframes sg-step{0%{transform:scale(1);opacity:.7}6%,16%{transform:scale(1.14);opacity:1}26%,100%{transform:scale(1);opacity:.7}}.sg-step{animation:sg-step 6s ease-in-out infinite}"
        "@keyframes sg-draw{0%{stroke-dashoffset:100;opacity:0}4%{opacity:1}14%,88%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}.sg-draw{stroke-dasharray:100;animation:sg-draw 6s ease-out infinite}"
-       "@keyframes sg-req{0%{transform:translateX(0);opacity:0}5%{opacity:1}42%{transform:translateX(903px);opacity:1}48%,100%{transform:translateX(903px);opacity:0}}.sg-req{opacity:0;animation:sg-req 6s ease-in-out infinite}"
-       "@keyframes sg-res{0%,48%{transform:translateX(903px);opacity:0}54%{opacity:1}92%{transform:translateX(0);opacity:1}98%,100%{transform:translateX(0);opacity:0}}.sg-res{opacity:0;animation:sg-res 6s ease-in-out infinite}"
+       "@keyframes sg-req{0%{transform:translateX(0);opacity:0}5%{opacity:1}42%{transform:translateX(903px);opacity:1}48%,100%{transform:translateX(903px);opacity:0}}.sg-req{opacity:0;animation:sg-req 12s ease-in-out infinite}"
+       "@keyframes sg-res{0%,48%{transform:translateX(903px);opacity:0}54%{opacity:1}92%{transform:translateX(0);opacity:1}98%,100%{transform:translateX(0);opacity:0}}.sg-res{opacity:0;animation:sg-res 12s ease-in-out infinite}"
        "@keyframes sg-commit{0%{opacity:0;transform:scale(.3)}7%{opacity:1;transform:scale(1.25)}12%,88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}.sg-commit{transform-box:fill-box;transform-origin:center;animation:sg-commit 6s ease-out infinite}"
        "@keyframes sg-branch{0%,8%{stroke-dashoffset:100;opacity:1}64%,90%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}.sg-branch{stroke-dasharray:100;animation:sg-branch 6s linear infinite}"
        "@keyframes sg-merge{0%,63%{opacity:0;transform:scale(.6)}68%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(2.2)}}.sg-merge{opacity:0;transform-box:fill-box;transform-origin:center;animation:sg-merge 6s ease-out infinite}"
@@ -179,7 +179,7 @@ def api(col, w, h):                   # Backend: a request going out through cli
         o += _line(lane, col, .45) + _flow(lane, col, cls) + _flow(lane, col, cls, -3)
         o += "".join(_line(f"M{x} {y}V{y_in:.0f}", col, .45) for x in xs)
     for k, (x, icon) in enumerate(zip(xs, (client, gate, valid, work, data))):
-        o += (f'<g transform="translate({x},{cy:.0f})"><g class="sg-step" style="animation-delay:{k * .55 - 6:.2f}s">'
+        o += (f'<g transform="translate({x},{cy:.0f})"><g class="sg-step" style="animation-delay:{k * 1.1 - 12:.2f}s;animation-duration:12s">'
               f'<rect x="{-bw / 2}" y="{-bh / 2}" width="{bw}" height="{bh}" rx="13" fill="#121018" stroke="{col}" stroke-width="1.8"/>'
               f'<rect x="{-bw / 2}" y="{-bh / 2}" width="{bw}" height="{bh}" rx="13" fill="{col}" fill-opacity=".12"/>{icon}</g></g>')
     for y, cls, label, pw, fill in ((top, "sg-req", "REQUEST  \u2192", 104, col), (bot, "sg-res", "\u2190  200 OK", 88, "#7be0ad")):
