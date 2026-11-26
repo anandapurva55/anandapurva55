@@ -22,5 +22,5 @@ def backing(w, h):
         y += step
         k += 1
     body = (f'<g clip-path="url(#bk-clip)"><rect width="{w}" height="{h}" fill="url(#bk-base)"/>{glows}<rect width="{w}" height="{h}" fill="url(#bk-dots)"/></g>'
-            f'<rect width="{w}" height="{h}" fill="none" stroke="#7fe8c0" stroke-opacity=".18"/>')
+            f'<rect x=".5" y=".5" width="{w - 1}" height="{h - 1}" rx="21.5" fill="none" stroke="#7fe8c0" stroke-opacity=".18"/>')
     return defs, body

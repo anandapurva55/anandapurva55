@@ -293,7 +293,7 @@ def render(t, w, h, body):
   </defs>
   <style>{css}</style>
   <g clip-path="url(#c)"><rect width="{w}" height="{h}" fill="{PANEL}"/>{motif(t["motif"], w, h, col)}<rect width="{w}" height="{h}" fill="url(#gl)"/></g>
-  <rect x=".75" y=".75" width="{w - 1.5}" height="{h - 1.5}" fill="none" stroke="{col}" stroke-opacity=".42" stroke-width="1.5"/>
+  <rect x=".75" y=".75" width="{w - 1.5}" height="{h - 1.5}" rx="21.25" fill="none" stroke="{col}" stroke-opacity=".42" stroke-width="1.5"/>
   <text x="28" y="38" style="font:800 13px {MONO};fill:{col};letter-spacing:2px">{t["n"]} · {t["flag"]}</text>
   <text x="{w - 28}" y="38" text-anchor="end" style="font:600 12px {MONO};fill:{MUTED};letter-spacing:1px">VIEW REPO ↗</text>
   {body}
