@@ -12,8 +12,8 @@ CSS = ("@keyframes sg-tw{0%,100%{opacity:.3}50%{opacity:1}}.sg-tw{animation:sg-t
        "@keyframes sg-ui{0%,100%{opacity:.18;transform:translateY(9px) scale(.9)}35%,65%{opacity:1;transform:translateY(0) scale(1)}}.sg-ui{transform-box:fill-box;transform-origin:center;animation:sg-ui 3s ease-in-out infinite}"
        "@keyframes sg-step{0%{transform:scale(1);opacity:.7}6%,16%{transform:scale(1.14);opacity:1}26%,100%{transform:scale(1);opacity:.7}}.sg-step{animation:sg-step 6s ease-in-out infinite}"
        "@keyframes sg-draw{0%{stroke-dashoffset:100;opacity:0}4%{opacity:1}14%,88%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}.sg-draw{stroke-dasharray:100;animation:sg-draw 6s ease-out infinite}"
-       "@keyframes sg-req{0%{transform:translateX(0);opacity:0}5%{opacity:1}42%{transform:translateX(903px);opacity:1}48%,100%{transform:translateX(903px);opacity:0}}.sg-req{opacity:0;animation:sg-req 12s ease-in-out infinite}"
-       "@keyframes sg-res{0%,48%{transform:translateX(903px);opacity:0}54%{opacity:1}92%{transform:translateX(0);opacity:1}98%,100%{transform:translateX(0);opacity:0}}.sg-res{opacity:0;animation:sg-res 12s ease-in-out infinite}"
+       "@keyframes sg-req{0%{transform:translateX(0);opacity:0}5%{opacity:1}42%{transform:translateX(902px);opacity:1}48%,100%{transform:translateX(902px);opacity:0}}.sg-req{opacity:0;animation:sg-req 12s ease-in-out infinite}"
+       "@keyframes sg-res{0%,48%{transform:translateX(902px);opacity:0}54%{opacity:1}92%{transform:translateX(0);opacity:1}98%,100%{transform:translateX(0);opacity:0}}.sg-res{opacity:0;animation:sg-res 12s ease-in-out infinite}"
        "@keyframes sg-commit{0%{opacity:0;transform:scale(.3)}7%{opacity:1;transform:scale(1.25)}12%,88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}.sg-commit{transform-box:fill-box;transform-origin:center;animation:sg-commit 6s ease-out infinite}"
        "@keyframes sg-branch{0%,8%{stroke-dashoffset:100;opacity:1}64%,90%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}.sg-branch{stroke-dasharray:100;animation:sg-branch 6s linear infinite}"
        "@keyframes sg-merge{0%,63%{opacity:0;transform:scale(.6)}68%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(2.2)}}.sg-merge{opacity:0;transform-box:fill-box;transform-origin:center;animation:sg-merge 6s ease-out infinite}"
@@ -152,7 +152,7 @@ def orbit(col, w, h):                 # GCP: large currents sweeping along share
 
 def radar(col, w, h):                 # Security & observability: a radar sweeping the box, a heartbeat running across it
     r = w * .2
-    o = f'<g transform="translate({w * .8:.0f},{h / 2:.0f})">'
+    o = f'<g transform="translate({w * .93:.0f},{h / 2:.0f})">'
     o += "".join(f'<circle r="{r * q:.0f}" fill="none" stroke="{col}" stroke-opacity=".26" stroke-width="1.5"/>' for q in (.25, .5, .75, 1))
     x, y = r * cos(-pi / 5), r * sin(-pi / 5)
     o += (f'<g class="sg-spin"><path d="M0 0H{r:.0f}A{r:.0f} {r:.0f} 0 0 0 {x:.0f} {y:.0f}Z" fill="{col}" fill-opacity=".2"/><path d="M0 0H{r:.0f}" stroke="{col}" stroke-width="2"/></g>'
@@ -165,7 +165,7 @@ def radar(col, w, h):                 # Security & observability: a radar sweepi
 def api(col, w, h):                   # Backend: a request going out through client -> gateway -> validation -> service -> data, and the response coming home
     ink = f'fill="none" stroke="{col}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"'
     cy, bw, bh = h * .52, 78, 62
-    xs = [445 + i * 132 for i in range(5)]
+    xs = [472 + i * 125 for i in range(5)]      # clear of the four logos
     client = f'<rect {ink} x="-26" y="-18" width="52" height="34" rx="5"/><path {ink} d="M-26 -8H26"/>' + "".join(_dot(-19 + k * 7, -13, col, 2, delay=-k * .4) for k in range(3)) + f'<path {ink} d="M-14 2H6M-14 9H14"/>'
     gate = f'<path {ink} d="M0 -21L21 -13V1C21 13 11 19 0 23C-11 19 -21 13 -21 1V-13Z"/><path {ink} d="M-8 -5l-6 6l6 6M8 -5l6 6l-6 6M3 -8l-6 18"/>'
     valid = f'<path {ink} d="M-17 -21H8L18 -11V21H-17Z M8 -21V-11H18"/><path {ink} d="M-9 -7H4M-9 1H10"/><path {ink} d="M-7 11l5 5l11 -11"/>'
