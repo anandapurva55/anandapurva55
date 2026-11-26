@@ -1,4 +1,5 @@
 """Toolbox as a logo wall: real brand marks, no per-tool boxes, with a slow wave of light across it."""
+from gen_backing import CSS as BK_CSS, backing
 from assetlib import (aspect, logo_box, AM, BG, BLUR, BODY, EM, FLOW_CSS, FONT, INK, LAV, MONO, MUTED, PANEL, RM, ROSE, SKY, cur, escape, has_logo, logo,
                       mono_tile, pd, wrap, write)
 
@@ -80,7 +81,7 @@ def toolbox():
     W, cols, cw, rh = 1000, 10, 100, 100
     y, out, n_logo, n_mono = 0, "", 0, 0
     adefs = ""
-    y = 16
+    y = 2                      # the first box sits as close to the top edge as the boxes do to the sides (14)
     for gi, (title, col, badge, items, also) in enumerate(GROUPS):
         bx, y0, before = 0, y, out
         out = ""
@@ -113,7 +114,8 @@ def toolbox():
         adefs += (f'<radialGradient id="a{gi}"><stop offset="0" stop-color="{col}" stop-opacity=".30"/><stop offset=".55" stop-color="{col}" stop-opacity=".13"/><stop offset="1" stop-color="{col}" stop-opacity="0"/></radialGradient>'
                   f'<clipPath id="c{gi}"><rect x="{bx0}" y="{by0}" width="{bw}" height="{bh}" rx="20"/></clipPath>')
         ry = max(bh * .75, 90)
-        box = (f'<rect x="{bx0}" y="{by0}" width="{bw}" height="{bh}" rx="20" fill="{col}" fill-opacity=".045"/>'
+        box = (f'<rect x="{bx0}" y="{by0}" width="{bw}" height="{bh}" rx="20" fill="#121316" fill-opacity=".94"/>'
+               f'<rect x="{bx0}" y="{by0}" width="{bw}" height="{bh}" rx="20" fill="{col}" fill-opacity=".045"/>'
                f'<g clip-path="url(#c{gi})">'
                f'<ellipse class="d1" style="animation-delay:{-gi * 2.3:.1f}s" cx="{W * .24:.0f}" cy="{by0 + bh * .15:.0f}" rx="340" ry="{ry:.0f}" fill="url(#a{gi})"/>'
                f'<ellipse class="d2" style="animation-delay:{-gi * 3.1:.1f}s" cx="{W * .76:.0f}" cy="{by0 + bh * .9:.0f}" rx="360" ry="{ry:.0f}" fill="url(#a{gi})"/>'
@@ -122,17 +124,18 @@ def toolbox():
         out = before + box + out
         y += 30
     H = y
-    H -= 14
+    H -= 46                    # drop the trailing gap so the last box is also 14 from the bottom edge
     css = ("@keyframes d1{0%,100%{transform:translate(-90px,0)}50%{transform:translate(260px,14px)}}.d1{animation:d1 14s ease-in-out infinite}"
            "@keyframes d2{0%,100%{transform:translate(90px,0)}50%{transform:translate(-280px,-14px)}}.d2{animation:d2 17s ease-in-out infinite}"
            "@keyframes rim{0%,100%{stroke-opacity:.3}50%{stroke-opacity:.6}}.rim{stroke-opacity:.42;animation:rim 8s ease-in-out infinite}" + SIG_CSS + RM)
     pad, head_h = 28, 0
     from gen_sections import GROW
     gdef, ghead = "", ""
+    bk_defs, bk_body = backing(W + 2 * pad, H + 2 * pad + head_h)
     write("toolbox.svg", f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W + 2 * pad}" height="{H + 2 * pad + head_h}" viewBox="0 0 {W + 2 * pad} {H + 2 * pad + head_h}">
-  <defs>{adefs}{gdef}</defs>
-  <style>{css}{GROW}</style>
-  <rect width="{W + 2 * pad}" height="{H + 2 * pad + head_h}" fill="{BG}" stroke="#fff" stroke-opacity=".08"/>
+  <defs>{adefs}{gdef}{bk_defs}</defs>
+  <style>{BK_CSS}{css}{GROW}</style>
+  {bk_body}
   {ghead}
   <g transform="translate({pad},{pad + head_h})">{out}</g>
 </svg>""")

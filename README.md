@@ -39,14 +39,14 @@ Beyond my professional work, I build end-to-end, open-source systems in my own t
 
 <div align="center">
 <a name="h-expertise"><img src="assets/h-expertise.57fbf334.svg" alt="From algorithms to production AI" width="100%" align="top"/></a>
-<a name="expertise-card"><img src="assets/stack.755f839b.svg" alt="Strong foundations, modern AI, production discipline. One: foundations in calculus, linear algebra, probability and statistics, so I can choose the right model. Two: classical machine learning, deep learning and NLP, then I moved to generative and agentic AI. Three: prompt engineering, RAG and semantic search, fine-tuning with SFT, LoRA and QLoRA, multi-agent systems with tools and memory, MCP servers and LLM-as-a-Judge evaluation, and I ship it with production engineering. Four: security and guardrails, observability, evaluation at scale, reliability, latency and cost, and cloud infrastructure as code on AWS and GCP." width="100%" align="top"/></a>
+<a name="expertise-card"><img src="assets/stack.94763b7c.svg" alt="Strong foundations, modern AI, production discipline. One: foundations in calculus, linear algebra, probability and statistics, so I can choose the right model. Two: classical machine learning, deep learning and NLP, then I moved to generative and agentic AI. Three: prompt engineering, RAG and semantic search, fine-tuning with SFT, LoRA and QLoRA, multi-agent systems with tools and memory, MCP servers and LLM-as-a-Judge evaluation, and I ship it with production engineering. Four: security and guardrails, observability, evaluation at scale, reliability, latency and cost, and cloud infrastructure as code on AWS and GCP." width="100%" align="top"/></a>
 </div>
 
 <a name="tech"></a>
 
 <div align="center">
 <a name="h-tech"><img src="assets/h-tech.6aac954a.svg" alt="Tools & technologies I use" width="100%" align="top"/></a>
-<a name="tech-card"><img src="assets/toolbox.5b191477.svg" alt="Tools and technologies I use, a logo wall: Generative and agentic AI; ML and data science; data and analytics; Amazon Web Services (AWS) including SageMaker, Lambda, ECS, S3, Glue and Athena; Google Cloud Platform (GCP) including BigQuery, Cloud Run, Cloud Build and Vertex AI; MLOps, security and observability; and languages, frameworks and dev tools." width="100%" align="top"/></a>
+<a name="tech-card"><img src="assets/toolbox.94ff6fd9.svg" alt="Tools and technologies I use, a logo wall: Generative and agentic AI; ML and data science; data and analytics; Amazon Web Services (AWS) including SageMaker, Lambda, ECS, S3, Glue and Athena; Google Cloud Platform (GCP) including BigQuery, Cloud Run, Cloud Build and Vertex AI; MLOps, security and observability; and languages, frameworks and dev tools." width="100%" align="top"/></a>
 </div>
 
 <a name="contact"></a>

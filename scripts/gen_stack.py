@@ -4,6 +4,7 @@
 
 Design rules taken from the research: lead with the answer, label every connection with a verb, keep one level of
 abstraction per tier, and keep each tier small enough to read at a glance."""
+from gen_backing import CSS as BK_CSS, backing
 from assetlib import (AM, BG, BLUR, BODY, EM, FLOW_CSS, FONT, INK, LAV, MONO, MUTED, PANEL, PANEL2, RM, ROSE, SKY, cur, escape,
                       lines_svg, logo, pd, wrap, write)
 
@@ -117,10 +118,10 @@ def stack():
     ys = {}
 
     # ---- answer first: the whole message in one line, before any detail
-    out += (f'<text x="2" y="38" style="font:800 34px {FONT};letter-spacing:-.5px"><tspan fill="{LAV}">Strong foundations</tspan>'
-            f'<tspan fill="{MUTED}">  ·  </tspan><tspan fill="{EM}">modern AI</tspan><tspan fill="{MUTED}">  ·  </tspan><tspan fill="{AM}">production discipline</tspan></text>'
-            f'<text x="2" y="70" style="font:500 17px {FONT};fill:{BODY}">The mathematics tells me why a model works. GenAI and agents let me build with it.</text>'
-            f'<text x="2" y="95" style="font:500 17px {FONT};fill:{BODY}">Production engineering keeps it fast, safe, affordable and working.</text>')
+    out += (f'<text x="2" y="38" style="font:800 34px {FONT};letter-spacing:-.5px"><tspan fill="#d2f77a">Strong foundations</tspan>'
+            f'<tspan fill="#8fc9b2">  ·  </tspan><tspan fill="#63f0b4">modern AI</tspan><tspan fill="#8fc9b2">  ·  </tspan><tspan fill="#6fdcf5">production discipline</tspan></text>'
+            f'<text x="2" y="70" style="font:500 17px {FONT};fill:#dcf7ea">The mathematics tells me why a model works. GenAI and agents let me build with it.</text>'
+            f'<text x="2" y="95" style="font:500 17px {FONT};fill:#dcf7ea">Production engineering keeps it fast, safe, affordable and working.</text>')
     y = 130
 
     # ---- tier 1: foundations
@@ -218,7 +219,7 @@ def stack():
                   f'<text x="30" y="{ys[n] + 45}" text-anchor="middle" style="font:800 14px {MONO};fill:{cols[n]}">{n}</text>')
         out += f'<path d="M45 {ys[n] + 40} H{x0}" stroke="{cols[n]}" stroke-opacity=".5" stroke-width="2"/>'
     for yy, label in conns:
-        out += (f'<text x="{x0 + 8}" y="{yy + 33}" style="font:700 15px {FONT};fill:{BODY}"><tspan fill="{AM}">↓</tspan>  {escape(label)}</text>')
+        out += (f'<text x="{x0 + 8}" y="{yy + 33}" style="font:700 15px {FONT};fill:#dcf7ea"><tspan fill="#d2f77a">↓</tspan>  {escape(label)}</text>')
 
     css = ("@keyframes pass{0%{transform:translateX(0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateX(225px);opacity:0}}"
            "@keyframes blk{0%{transform:translateX(0);opacity:0}8%{opacity:1}45%{transform:translateX(118px);opacity:1}60%{transform:translateX(112px);opacity:0}100%{transform:translateX(112px);opacity:0}}"
@@ -241,13 +242,14 @@ def stack():
     chain = cur(pd([(chain_x[0], cy_), (chain_x[-1], cy_)]), EM, 0, 4.4, 3.4, 8)
     for xx, cc, nm in zip(chain_x, chain_cols, chain_names):
         chain += (f'<circle cx="{xx}" cy="{cy_}" r="7" fill="{BG}" stroke="{cc}" stroke-width="2.6"/><circle cx="{xx}" cy="{cy_}" r="2.6" fill="{cc}"/>'
-                  f'<text x="{xx}" y="{cy_ - 16}" text-anchor="middle" style="font:700 10.5px {MONO};fill:{MUTED};letter-spacing:1.4px">{nm}</text>')
+                  f'<text x="{xx}" y="{cy_ - 16}" text-anchor="middle" style="font:700 10.5px {MONO};fill:#a9e6cb;letter-spacing:1.4px">{nm}</text>')
     from gen_sections import GROW
     gdef, ghead = "", ""
+    bk_defs, bk_body = backing(W + 2 * pad, H + 2 * pad + head_h)
     write("stack.svg", f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W + 2 * pad}" height="{H + 2 * pad + head_h}" viewBox="0 0 {W + 2 * pad} {H + 2 * pad + head_h}">
-  <defs>{BLUR}{gdef}</defs>
-  <style>{css}{GROW}</style>
-  <rect width="{W + 2 * pad}" height="{H + 2 * pad + head_h}" fill="{BG}" stroke="#fff" stroke-opacity=".08"/>
+  <defs>{BLUR}{gdef}{bk_defs}</defs>
+  <style>{css}{GROW}{BK_CSS}</style>
+  {bk_body}
   {ghead}
   {chain}
   <g transform="translate({pad},{pad + head_h})">{spine}{out}</g>
